@@ -7,6 +7,14 @@
       "note": "Boss",
       "status": "active",
       "issued": "2026-07-12"
+    },
+    {
+      "key": "ZEMM-KNDR-8J5U-C8QK",
+      "hwid": "44c46864e73acedf49dabc5d409a877b",
+      "expiry": "2027-07-12",
+      "note": "Arman",
+      "status": "active",
+      "issued": "2026-07-12"
     }
   ]
 }
