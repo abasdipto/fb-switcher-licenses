@@ -1,1 +1,12 @@
-{"licenses":[]}
+{
+  "licenses": [
+    {
+      "key": "UPX5-D259-26RT-L2UK",
+      "hwid": "7085e89eb6a504ec6921e11ee58afa14",
+      "expiry": "2027-07-12",
+      "note": "Boss",
+      "status": "active",
+      "issued": "2026-07-12"
+    }
+  ]
+}
