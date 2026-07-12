@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FB Switcher — License Admin</title>
+<style>
+  :root {
+    --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --muted:#8b949e;
+    --accent:#2f81f7; --green:#238636; --red:#da3633; --yellow:#9e6a03;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',system-ui,sans-serif; padding:32px 16px; }
+  .wrap { max-width:760px; margin:0 auto; }
+  h1 { font-size:26px; margin-bottom:4px; }
+  .sub { color:var(--muted); margin-bottom:22px; font-size:14px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
+  .card h2 { font-size:17px; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+  label { display:block; font-size:11px; letter-spacing:.5px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+  input, textarea { width:100%; background:#0d1117; border:1px solid var(--border); color:var(--text);
+    border-radius:8px; padding:10px 12px; font-size:14px; font-family:inherit; }
+  input:focus, textarea:focus { outline:none; border-color:var(--accent); }
+  .row { display:flex; gap:14px; }
+  .row > div { flex:1; }
+  .fg { margin-bottom:14px; }
+  .btn { border:none; border-radius:8px; padding:10px 16px; font-size:14px; font-weight:600; cursor:pointer; color:#fff; }
+  .btn-primary { background:var(--accent); }
+  .btn-ghost { background:#21262d; border:1px solid var(--border); }
+  .btn-green { background:var(--green); }
+  .btn-red { background:var(--red); }
+  .btn-sm { padding:5px 12px; font-size:12px; }
+  .btn:disabled { opacity:.5; cursor:not-allowed; }
+  .actions { display:flex; gap:10px; margin-top:6px; flex-wrap:wrap; }
+  .banner { border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:20px; border:1px solid; }
+  .banner.ok { border-color:var(--green); background:rgba(35,134,54,.12); color:#7ee787; }
+  .banner.warn { border-color:var(--yellow); background:rgba(158,106,3,.12); color:#e3b341; }
+  .banner a { color:inherit; text-decoration:underline; cursor:pointer; margin-left:6px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color:var(--muted); font-size:11px; text-transform:uppercase; padding:8px; border-bottom:1px solid var(--border); }
+  td { padding:10px 8px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  .mono { font-family:ui-monospace,Consolas,monospace; }
+  .pill { padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; }
+  .pill.active { background:rgba(35,134,54,.2); color:#7ee787; }
+  .pill.revoked { background:rgba(218,54,51,.2); color:#ff7b72; }
+  .pill.expired { background:rgba(158,106,3,.2); color:#e3b341; }
+  .msg { font-size:13px; margin-top:10px; padding:8px 12px; border-radius:8px; display:none; }
+  .msg.show { display:block; }
+  .msg.err { background:rgba(218,54,51,.12); color:#ff7b72; }
+  .msg.good { background:rgba(35,134,54,.12); color:#7ee787; }
+  .keybox { background:#0d1117; border:1px dashed var(--accent); border-radius:8px; padding:12px; margin-top:10px;
+    font-family:ui-monospace,monospace; font-size:16px; letter-spacing:1px; text-align:center; display:none; }
+  .keybox.show { display:block; }
+  .muted { color:var(--muted); font-size:12px; }
+  .hint { color:var(--muted); font-size:12px; margin-top:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🔐 FB Switcher — License Admin</h1>
+  <p class="sub">Issue and revoke device-locked licenses for FB Switcher Pro users.</p>
+
+  <div id="pat-banner" class="banner warn">
+    No GitHub token loaded.
+    <a id="pat-set">Set token</a>
+  </div>
+
+  <!-- Issue -->
+  <div class="card">
+    <h2>➕ Issue New License</h2>
+    <div class="fg">
+      <label>Customer Device ID (HWID)</label>
+      <input id="hwid" placeholder="paste the 32-char Device ID from the customer's Settings">
+    </div>
+    <div class="row fg">
+      <div>
+        <label>Validity (days)</label>
+        <input id="days" type="number" value="365" min="1">
+      </div>
+      <div>
+        <label>Customer note (name / phone)</label>
+        <input id="note" placeholder="Rahim - 01XXX">
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-issue">Generate &amp; Issue</button>
+      <button class="btn btn-ghost" id="btn-preview">Preview Key Only</button>
+    </div>
+    <div class="keybox" id="keybox"></div>
+    <div class="msg" id="issue-msg"></div>
+  </div>
+
+  <!-- List -->
+  <div class="card">
+    <h2>📋 Licenses <button class="btn btn-ghost btn-sm" id="btn-refresh" style="margin-left:auto;">↻ Refresh</button></h2>
+    <div class="msg" id="list-msg"></div>
+    <table>
+      <thead><tr><th>Key</th><th>Device</th><th>Expires</th><th>Note</th><th>Status</th><th></th></tr></thead>
+      <tbody id="rows"><tr><td colspan="6" class="muted">Load a token, then Refresh.</td></tr></tbody>
+    </table>
+  </div>
+
+  <!-- Settings -->
+  <div class="card">
+    <h2>⚙️ Settings</h2>
+    <div class="actions">
+      <button class="btn btn-ghost btn-sm" id="btn-change-pat">Change GitHub Token</button>
+      <button class="btn btn-red btn-sm" id="btn-clear-pat">Clear Stored Token</button>
+    </div>
+    <p class="hint">Repo: <span class="mono" id="repo-label"></span>. Your token is stored only in this browser (localStorage) and sent only to GitHub. Needs a token with write access to <em>Contents</em> of this repo.</p>
+  </div>
+</div>
+
+<script>
+  // ---- Config ----
+  const OWNER = 'abasdipto';
+  const REPO  = 'fb-switcher-licenses';
+  const PATH  = 'licenses.json';
+  const BRANCH = 'main';
+  const PAT_KEY = 'fbswitcher_admin_pat';
+
+  document.getElementById('repo-label').textContent = OWNER + '/' + REPO;
+
+  // ---- PAT ----
+  function getPat() { return localStorage.getItem(PAT_KEY) || ''; }
+  function setPat(v) { if (v) localStorage.setItem(PAT_KEY, v); }
+  function clearPat() { localStorage.removeItem(PAT_KEY); }
+
+  function refreshPatBanner() {
+    const b = document.getElementById('pat-banner');
+    if (getPat()) {
+      b.className = 'banner ok';
+      b.innerHTML = '✓ GitHub token loaded. <a id="pat-change">Change</a> · <a id="pat-clear">Clear</a>';
+      document.getElementById('pat-change').onclick = promptPat;
+      document.getElementById('pat-clear').onclick = () => { clearPat(); refreshPatBanner(); };
+    } else {
+      b.className = 'banner warn';
+      b.innerHTML = 'No GitHub token loaded. <a id="pat-set">Set token</a>';
+      document.getElementById('pat-set').onclick = promptPat;
+    }
+  }
+  function promptPat() {
+    const v = prompt('Paste your GitHub Personal Access Token (fine-grained, with Contents: Read & Write on ' + OWNER + '/' + REPO + '):', '');
+    if (v && v.trim()) { setPat(v.trim()); refreshPatBanner(); loadLicenses(); }
+  }
+  document.getElementById('pat-set').onclick = promptPat;
+  document.getElementById('btn-change-pat').onclick = promptPat;
+  document.getElementById('btn-clear-pat').onclick = () => { clearPat(); refreshPatBanner(); };
+
+  // ---- Base64 (UTF-8 safe) ----
+  function b64enc(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64dec(b64) { return decodeURIComponent(escape(atob((b64 || '').replace(/\s/g, '')))); }
+
+  // ---- GitHub API ----
+  const API = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + PATH;
+  async function ghGet() {
+    const r = await fetch(API + '?ref=' + BRANCH + '&t=' + Date.now(), {
+      headers: { 'Authorization': 'Bearer ' + getPat(), 'Accept': 'application/vnd.github+json' }, cache: 'no-store'
+    });
+    if (!r.ok) throw new Error('GitHub read failed (' + r.status + '). Check token & repo.');
+    const data = await r.json();
+    let json;
+    try { json = JSON.parse(b64dec(data.content)); } catch (e) { json = { licenses: [] }; }
+    if (!json.licenses) json.licenses = [];
+    return { json: json, sha: data.sha };
+  }
+  async function ghPut(json, sha, message) {
+    const body = { message: message, content: b64enc(JSON.stringify(json, null, 2)), branch: BRANCH };
+    if (sha) body.sha = sha;
+    const r = await fetch(API, {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + getPat(), 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) { const t = await r.text(); throw new Error('GitHub write failed (' + r.status + '): ' + t.slice(0, 160)); }
+    return r.json();
+  }
+
+  // ---- Helpers ----
+  const CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  function genKey() {
+    const grp = () => Array.from({ length: 4 }, () => CHARS[Math.floor(Math.random() * CHARS.length)]).join('');
+    return [grp(), grp(), grp(), grp()].join('-');
+  }
+  function addDays(days) {
+    const d = new Date(); d.setDate(d.getDate() + parseInt(days || '365', 10));
+    return d.toISOString().slice(0, 10);
+  }
+  function todayStr() { return new Date().toISOString().slice(0, 10); }
+  function msg(id, text, type) {
+    const el = document.getElementById(id);
+    el.textContent = text; el.className = 'msg show ' + (type || '');
+  }
+  function shorten(s, n) { s = s || ''; return s.length > n ? s.slice(0, n) + '…' : s; }
+
+  // ---- Preview / Issue ----
+  document.getElementById('btn-preview').onclick = () => {
+    const k = genKey();
+    const kb = document.getElementById('keybox'); kb.textContent = k; kb.className = 'keybox show';
+    msg('issue-msg', 'Preview only — not saved. Click "Generate & Issue" to save & lock to the device.', '');
+  };
+
+  document.getElementById('btn-issue').onclick = async () => {
+    if (!getPat()) { msg('issue-msg', 'Set your GitHub token first.', 'err'); return; }
+    const hwid = document.getElementById('hwid').value.trim();
+    const days = document.getElementById('days').value.trim();
+    const note = document.getElementById('note').value.trim();
+    if (!hwid) { msg('issue-msg', 'Paste the customer Device ID (HWID).', 'err'); return; }
+    if (hwid.length < 8) { msg('issue-msg', 'That HWID looks too short — copy the full Device ID from the customer.', 'err'); return; }
+
+    const btn = document.getElementById('btn-issue'); btn.disabled = true;
+    msg('issue-msg', 'Issuing…', '');
+    try {
+      const { json, sha } = await ghGet();
+      const key = genKey();
+      json.licenses.push({ key: key, hwid: hwid, expiry: addDays(days), note: note, status: 'active', issued: todayStr() });
+      await ghPut(json, sha, 'Issue license ' + key);
+      const kb = document.getElementById('keybox'); kb.textContent = key; kb.className = 'keybox show';
+      msg('issue-msg', '✅ Issued & saved. Give this key to the customer — it only works on their device.', 'good');
+      document.getElementById('hwid').value = ''; document.getElementById('note').value = '';
+      loadLicenses();
+    } catch (e) {
+      msg('issue-msg', '❌ ' + e.message, 'err');
+    } finally { btn.disabled = false; }
+  };
+
+  // ---- List / Revoke ----
+  async function loadLicenses() {
+    if (!getPat()) return;
+    msg('list-msg', 'Loading…', '');
+    try {
+      const { json } = await ghGet();
+      const rows = document.getElementById('rows');
+      const list = json.licenses || [];
+      document.getElementById('list-msg').className = 'msg';
+      if (!list.length) { rows.innerHTML = '<tr><td colspan="6" class="muted">No licenses yet.</td></tr>'; return; }
+      rows.innerHTML = '';
+      list.slice().reverse().forEach(l => {
+        const expired = l.expiry && l.expiry < todayStr();
+        let statusClass = 'active', statusText = 'ACTIVE';
+        if (String(l.status).toLowerCase() === 'revoked') { statusClass = 'revoked'; statusText = 'REVOKED'; }
+        else if (expired) { statusClass = 'expired'; statusText = 'EXPIRED'; }
+        const tr = document.createElement('tr');
+        tr.innerHTML =
+          '<td class="mono">' + l.key + '</td>' +
+          '<td class="mono" title="' + (l.hwid || '') + '">' + shorten(l.hwid, 10) + '</td>' +
+          '<td>' + (l.expiry || '') + '</td>' +
+          '<td>' + (l.note || '') + '</td>' +
+          '<td><span class="pill ' + statusClass + '">' + statusText + '</span></td>' +
+          '<td></td>';
+        if (statusClass === 'active') {
+          const b = document.createElement('button');
+          b.className = 'btn btn-red btn-sm'; b.textContent = 'Revoke';
+          b.onclick = () => revoke(l.key);
+          tr.lastElementChild.appendChild(b);
+        }
+        rows.appendChild(tr);
+      });
+    } catch (e) {
+      msg('list-msg', '❌ ' + e.message, 'err');
+    }
+  }
+
+  async function revoke(key) {
+    if (!confirm('Revoke ' + key + '? The user will be locked out within minutes.')) return;
+    msg('list-msg', 'Revoking…', '');
+    try {
+      const { json, sha } = await ghGet();
+      const rec = (json.licenses || []).find(l => l.key === key);
+      if (!rec) throw new Error('Key not found');
+      rec.status = 'revoked';
+      await ghPut(json, sha, 'Revoke license ' + key);
+      msg('list-msg', '✅ Revoked ' + key, 'good');
+      loadLicenses();
+    } catch (e) {
+      msg('list-msg', '❌ ' + e.message, 'err');
+    }
+  }
+
+  document.getElementById('btn-refresh').onclick = loadLicenses;
+
+  // ---- Init ----
+  refreshPatBanner();
+  if (getPat()) loadLicenses();
+</script>
+</body>
+</html>
