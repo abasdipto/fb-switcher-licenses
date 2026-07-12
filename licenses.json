@@ -31,6 +31,14 @@
       "note": "Maruf",
       "status": "revoked",
       "issued": "2026-07-12"
+    },
+    {
+      "key": "4EED-SD89-6UA6-CES9",
+      "hwid": "9db2364f005d6b18e892d46baecacf43",
+      "expiry": "2027-07-12",
+      "note": "Shopon",
+      "status": "active",
+      "issued": "2026-07-12"
     }
   ]
 }
