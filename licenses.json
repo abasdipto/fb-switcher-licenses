@@ -39,6 +39,14 @@
       "note": "Shopon",
       "status": "active",
       "issued": "2026-07-12"
+    },
+    {
+      "key": "AACL-ASWH-29JE-HS2M",
+      "hwid": "bada77aa36f0ba5220f6e13030338b96",
+      "expiry": "2026-08-11",
+      "note": "Aliul Siam",
+      "status": "active",
+      "issued": "2026-07-12"
     }
   ]
 }
