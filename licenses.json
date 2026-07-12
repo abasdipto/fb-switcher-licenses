@@ -15,6 +15,14 @@
       "note": "Arman",
       "status": "active",
       "issued": "2026-07-12"
+    },
+    {
+      "key": "ZB49-AESU-U8CH-WSZH",
+      "hwid": "c5186c9c61b16f6fb3d74d9ad3e3159d",
+      "expiry": "2027-07-12",
+      "note": "Swapon",
+      "status": "active",
+      "issued": "2026-07-12"
     }
   ]
 }
