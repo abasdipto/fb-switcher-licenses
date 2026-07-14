@@ -55,6 +55,14 @@
       "note": "Ahsan Sojib",
       "status": "active",
       "issued": "2026-07-12"
+    },
+    {
+      "key": "HFMQ-32AA-QZUZ-NZ55",
+      "hwid": "933823c1d8d776fd6d1d5b3640f077dd",
+      "expiry": "2027-07-14",
+      "note": "Robin Designer",
+      "status": "active",
+      "issued": "2026-07-14"
     }
   ]
 }
