@@ -87,6 +87,14 @@
       "note": "Md Selim",
       "status": "revoked",
       "issued": "2026-07-14"
+    },
+    {
+      "key": "C2CE-9MXP-C85L-6YW4",
+      "hwid": "1c61a10d579495ef7e42c1c667534d89",
+      "expiry": "2027-07-14",
+      "note": "Selim vai new",
+      "status": "active",
+      "issued": "2026-07-14"
     }
   ]
 }
