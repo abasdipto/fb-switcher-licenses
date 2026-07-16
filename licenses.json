@@ -95,6 +95,14 @@
       "note": "Selim vai new",
       "status": "active",
       "issued": "2026-07-14"
+    },
+    {
+      "key": "QKNF-QV88-M9YP-YJ3A",
+      "hwid": "284b673e540728861ffc6df2d66988be",
+      "expiry": "2027-07-16",
+      "note": "Boss 2",
+      "status": "active",
+      "issued": "2026-07-16"
     }
   ]
 }
