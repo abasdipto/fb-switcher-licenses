@@ -103,6 +103,14 @@
       "note": "Boss 2",
       "status": "active",
       "issued": "2026-07-16"
+    },
+    {
+      "key": "3WD7-BH56-RE66-C4YL",
+      "hwid": "617e8fce9b575417afea70decf1013fc",
+      "expiry": "2027-07-16",
+      "note": "Arman machine 2",
+      "status": "active",
+      "issued": "2026-07-16"
     }
   ]
 }
