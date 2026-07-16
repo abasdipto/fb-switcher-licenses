@@ -119,6 +119,14 @@
       "note": "Swapon Machine 2",
       "status": "active",
       "issued": "2026-07-16"
+    },
+    {
+      "key": "ZZYS-MFQL-4Z8S-FDUF",
+      "hwid": "05ea103555066957559df11cec6d91c5",
+      "expiry": "2027-07-16",
+      "note": "Selim Machine 2",
+      "status": "active",
+      "issued": "2026-07-16"
     }
   ]
 }
