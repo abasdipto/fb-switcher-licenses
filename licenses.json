@@ -111,6 +111,14 @@
       "note": "Arman machine 2",
       "status": "active",
       "issued": "2026-07-16"
+    },
+    {
+      "key": "9DG8-B6BE-2KGW-BMKK",
+      "hwid": "913614749e57ce223127386852f2cf88",
+      "expiry": "2027-07-16",
+      "note": "Swapon Machine 2",
+      "status": "active",
+      "issued": "2026-07-16"
     }
   ]
 }
