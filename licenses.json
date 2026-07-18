@@ -175,6 +175,14 @@
       "note": "",
       "status": "revoked",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "22WK-XEZE-FU9U-NH6J",
+      "hwid": "b32a025a8bfd504ed0e4af9a713f0e4b",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 5",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
