@@ -127,6 +127,14 @@
       "note": "Selim Machine 2",
       "status": "active",
       "issued": "2026-07-16"
+    },
+    {
+      "key": "PNFD-5MM8-E82B-M4EZ",
+      "hwid": "3d80c34ffc965912f21bf5f0216f4e5e",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 1",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
