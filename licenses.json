@@ -135,6 +135,14 @@
       "note": "Adi vai 1",
       "status": "active",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "XUKA-XL73-Y6DN-BRCY",
+      "hwid": "3d4246d3c70afb4a8d04fcb2f4392213",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 2",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
