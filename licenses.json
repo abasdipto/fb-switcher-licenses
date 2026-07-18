@@ -183,6 +183,14 @@
       "note": "Adi vai 5",
       "status": "active",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "L7FV-RRBL-R89S-QQU6",
+      "hwid": "57cd7b8a9676b1be63d99f1f4ae5451d",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 6",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
