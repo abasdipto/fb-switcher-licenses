@@ -143,6 +143,14 @@
       "note": "Adi vai 2",
       "status": "active",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "VZ3J-78N4-ZQQH-5V4T",
+      "hwid": "8eeb235fe9434c790c5ff0a6d4440c10",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 3",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
