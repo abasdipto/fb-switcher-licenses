@@ -151,6 +151,14 @@
       "note": "Adi vai 3",
       "status": "revoked",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "BGFB-2WLJ-6UGY-VCPC",
+      "hwid": "8eeb235fe9434c790c5ff0a6d4440c10",
+      "expiry": "2027-07-18",
+      "note": "Adi vai 3",
+      "status": "active",
+      "issued": "2026-07-18"
     }
   ]
 }
