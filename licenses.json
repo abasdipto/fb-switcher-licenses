@@ -199,6 +199,14 @@
       "note": "Tawsif 1",
       "status": "active",
       "issued": "2026-07-18"
+    },
+    {
+      "key": "GET8-6JH8-HPLP-YFC8",
+      "hwid": "62720e517af52168544028e80aaf89be",
+      "expiry": "2027-07-19",
+      "note": "Keya",
+      "status": "active",
+      "issued": "2026-07-19"
     }
   ]
 }
