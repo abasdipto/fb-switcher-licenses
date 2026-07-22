@@ -207,6 +207,14 @@
       "note": "Keya",
       "status": "active",
       "issued": "2026-07-19"
+    },
+    {
+      "key": "3WRH-PBDW-2HJ5-RUL9",
+      "hwid": "980f00cdc1615fd90f8169e1cd5bdb1d",
+      "expiry": "2027-07-22",
+      "note": "BrowserOS",
+      "status": "active",
+      "issued": "2026-07-22"
     }
   ]
 }
