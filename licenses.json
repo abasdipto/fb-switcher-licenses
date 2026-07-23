@@ -215,6 +215,14 @@
       "note": "BrowserOS",
       "status": "active",
       "issued": "2026-07-22"
+    },
+    {
+      "key": "9XBK-TVRA-53HN-F8DC",
+      "hwid": "1b5b929676c35c9e616ffea47529c8d0",
+      "expiry": "2027-07-23",
+      "note": "Ullash",
+      "status": "active",
+      "issued": "2026-07-23"
     }
   ]
 }
