@@ -231,6 +231,14 @@
       "note": "Ullash",
       "status": "revoked",
       "issued": "2026-07-23"
+    },
+    {
+      "key": "N3KL-HQVS-G89M-W4N5",
+      "hwid": "1b5b929676c35c9e616ffea47529c8d0",
+      "expiry": "2027-07-23",
+      "note": "ullash",
+      "status": "active",
+      "issued": "2026-07-23"
     }
   ]
 }
