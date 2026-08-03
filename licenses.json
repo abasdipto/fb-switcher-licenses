@@ -287,6 +287,14 @@
       "note": "",
       "status": "active",
       "issued": "2026-08-03"
+    },
+    {
+      "key": "8TGZ-24CK-6FF3-TVAT",
+      "hwid": "0b85f5b0de4f329f7039a0d60b3e0c4d",
+      "expiry": "2027-08-03",
+      "note": "",
+      "status": "active",
+      "issued": "2026-08-03"
     }
   ]
 }
