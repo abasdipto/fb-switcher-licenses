@@ -271,6 +271,14 @@
       "note": "Dipto New",
       "status": "active",
       "issued": "2026-08-03"
+    },
+    {
+      "key": "SGRN-GN5K-87VC-XYRD",
+      "hwid": "6f6d4bd15c25b4c15d610bc96f9ead50",
+      "expiry": "2027-08-03",
+      "note": "",
+      "status": "active",
+      "issued": "2026-08-03"
     }
   ]
 }
