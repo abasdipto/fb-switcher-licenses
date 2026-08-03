@@ -295,6 +295,14 @@
       "note": "",
       "status": "active",
       "issued": "2026-08-03"
+    },
+    {
+      "key": "8EL7-FXV3-RQQ2-AXT6",
+      "hwid": "6168f9ba5ad05cbcd0bd78cef9589a70",
+      "expiry": "2027-08-03",
+      "note": "",
+      "status": "active",
+      "issued": "2026-08-03"
     }
   ]
 }
