@@ -279,6 +279,14 @@
       "note": "",
       "status": "active",
       "issued": "2026-08-03"
+    },
+    {
+      "key": "FU5D-S3ZW-S6ZM-A6TP",
+      "hwid": "6f6d4bd15c25b4c15d610bc96f9ead50",
+      "expiry": "2027-08-03",
+      "note": "",
+      "status": "active",
+      "issued": "2026-08-03"
     }
   ]
 }
