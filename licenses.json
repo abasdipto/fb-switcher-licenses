@@ -263,6 +263,14 @@
       "note": "Tawsif new",
       "status": "active",
       "issued": "2026-07-25"
+    },
+    {
+      "key": "QBS4-P86N-8UYH-NS5M",
+      "hwid": "6f6d4bd15c25b4c15d610bc96f9ead50",
+      "expiry": "2027-08-03",
+      "note": "Dipto New",
+      "status": "active",
+      "issued": "2026-08-03"
     }
   ]
 }
